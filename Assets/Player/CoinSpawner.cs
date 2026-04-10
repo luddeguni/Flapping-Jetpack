@@ -35,6 +35,9 @@ public class CoinSpawner : MonoBehaviour
     [Tooltip("Coins further left than this X value get recycled.")]
     public float despawnX = -10f;
 
+    [Tooltip("Scale applied to each coin. Increase to make coins bigger.")]
+    public Vector3 coinScale = new Vector3(2f, 2f, 1f);
+
     // ---- Private ----
     private float timer = 0f;
     private GameObject[] pool;
@@ -53,6 +56,7 @@ public class CoinSpawner : MonoBehaviour
         for (int i = 0; i < maxCoins; i++)
         {
             pool[i] = Instantiate(coinPrefab);
+            pool[i].transform.localScale = coinScale;
             pool[i].SetActive(false);
         }
     }
@@ -92,6 +96,6 @@ public class CoinSpawner : MonoBehaviour
                 return;
             }
         }
-        // All coins are active — pool is full, skip this spawn
+        // All coins are active ï¿½ pool is full, skip this spawn
     }
 }
